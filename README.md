@@ -40,3 +40,7 @@ They have an API documentation here which will return a detailed JSON response w
 This is you guys, I'm gonna need help with this one because I don't really know what you do for them.
 
 I'll get with you to talk about what I've done and what needs to be done first in a little bit but I have some other things I need to get done as well.
+
+## Important Links 
+https://help.displayr.com/hc/en-us/articles/4403869071247
+
