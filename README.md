@@ -8,6 +8,12 @@
 
 This part is pretty simple; it just needs to be a map showing some info about the district and the candidates running in it.
 
+We can use tool tips to communicate basic information the way VPAP does:
+![example](/examples/VPAP.png)
+
+More complex information can be conveyed to the side or bottom of the map:
+![example](/examples/SideBar.png)
+
 ## Election Results
 
 Election results is something we'll need to touch on, but isn't as important for the MVP version.
