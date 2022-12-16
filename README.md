@@ -4,10 +4,10 @@
 
 ## Mockup Screenshots
 ### Statewide Ex. 
-![example]('/examples/Dashboard/Dashboard Ex-Statewide')
+![example]('/examples/Dashboard/Dashboard Ex-Statewide.svg')
 
 ### Congressional District Ex.
-![example]('/examples/Dashboard/Dashboard Ex-District')
+![example]('/examples/Dashboard/Dashboard Ex-District.svg')
 
 ## District Information
 
