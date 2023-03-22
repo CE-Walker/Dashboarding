@@ -50,3 +50,5 @@ I'll get with you to talk about what I've done and what needs to be done first i
 https://help.displayr.com/hc/en-us/articles/4403869071247
 
 https://app.displayr.com/Dashboard?project_id=-995416#page=d10d9703-0b53-4bdc-a331-cf9878b4e80f
+
+Instructions for VSCode
