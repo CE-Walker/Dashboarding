@@ -352,3 +352,5 @@ election_bar <- function(df, election) {
     ) %>%
     hc_add_theme(my_theme)
 }
+# function to filter data by election
+
