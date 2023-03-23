@@ -56,13 +56,17 @@ https://app.displayr.com/Dashboard?project_id=-995416#page=d10d9703-0b53-4bdc-a3
 here is a list of tools I've found really helpful in my development
 
 vscode > R studio is my preference but you certainly don't need to use it
+
+`run commands formatted like this in powershell which is included with windows`
+
 1. [python](https://www.python.org/downloads/release/python-3112/) + pipx
    * used to install radian
-   * py -3 -m pip install --user pipx
-   * py -3 -m pipx ensurepath
+   * after installing python :
+   * `py -3 -m pip install --user pipx`
+   * `py -3 -m pipx ensurepath`
 2. radian
    * modern revision of the R console
-   * pipx install -U radian
+   * `pipx install -U radian`
 3. [vscode](https://code.visualstudio.com/) with R extensions 
    1. R
       * change setting: File > Preferences > Settings > Extensions > R > Plot: Use Httpgd [x]
