@@ -76,6 +76,7 @@ vscode > R studio is my preference  there are reasons for this like support for 
 4. R packages used by the R extension
    * install.packages("languageserver")
    * install.packages("styler")
-   * install.packages("lintr") - make sure you copy the .lintr file into your project root or most everything will be underlined.
+   * install.packages("lintr") - make sure you copy the .lintr file in this repo into your project root or most everything will be underlined.
    * install.packages("httpgd")
+5. **Experimental** this weekend I'm going to try out the github copilot extension which basically adds chatgpt to vscode and you can ask it for things with comments.
     
