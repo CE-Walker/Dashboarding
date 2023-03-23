@@ -14,9 +14,12 @@ house_precincts$District <- as.numeric(sub("HSE ", "", house_precincts$District)
 
 corrections <- read.csv("Assets/election/Corrections_Table.csv")
 
-for (i in seq_len((nrow(corrections)))) {     
+for (i in seq_len((nrow(corrections)))) {
+    print(corrections$PrecinctName[i])
+    print(corrections$FormerName[i])     
+
     house_precincts$PrecinctName <- 
-        sub(corrections$PrecinctName, corrections$FormerName[i], house_precincts$PrecinctName)
+        sub(corrections$PrecinctName[i], corrections$FormerName[i], house_precincts$PrecinctName)
 }
 
 results <- read.csv("Assets/election/2021_November_General_Results.csv")

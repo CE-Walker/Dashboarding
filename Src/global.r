@@ -16,18 +16,18 @@ library(tidyr)
 # setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 # Load Geo Data
-geo.hd <- sf::st_read("Assets/HD.json")
-geo.county <- sf::st_read("Assets/County.geojson")
+geo.hd <- sf::st_read("Assets/geography/HD.json")
+geo.county <- sf::st_read("Assets/geography/County.geojson")
 geo.county$NAMELSAD <- str_to_title(geo.county$NAMELSAD)
 
 # # Load 2022 Election Data
-df.2021_election <- read.csv("Assets/2021 November General  - wManualAdjHD.csv") # Partial Mapping File (not perfect)
+df.2021_election <- read.csv("Assets/election/2021 November General  - wManual.csv") # Partial Mapping File (not perfect)
 df.2021_election$DistrictName <- df.2021_election$AdjHD
 df.2021_election$LocalityName <- df.2021_election$LocalityName %>% str_replace_all("KING & QUEEN COUNTY", "King And Queen County")
 df.2021_election$LocalityName <- str_to_title(df.2021_election$LocalityName)
 
 # Load Finance Data
-df.finance <- read.csv("Assets/complete.csv")
+df.finance <- read.csv("Assets/finance/2022_House_Finances.csv")
 df.finance$CandidateName <- str_to_title(df.finance$CandidateName)
 
 summary_table <- function(df, distType, offTitle, df.geo, df.finance) {
@@ -121,9 +121,9 @@ df.county[paste0("D_", districts)] <- t(apply(df.county, 1, function(x) {
   })
 }))
 
-source("functions.r")
-source("ui.r")
-source("server.r")
+source("Src/functions.r")
+source("Src/ui.r")
+source("Src/server.r")
 
 # Run Shiny App
 shiny::shinyApp(ui, server)

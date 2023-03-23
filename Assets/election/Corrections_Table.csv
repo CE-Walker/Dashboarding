@@ -165,7 +165,7 @@ PrecinctName,FormerName,Source:,County
 113 - SPRINGFIELD,114 - MONUMENT HILLS,(Manual) -- assume election data has same name,Henrico
 114 - STAPLES MILL,115 - STAPLES MILL,(Manual) -- assume election data has same name,Henrico
 115 - WESTWOOD,117 - WESTWOOD,(Manual) -- assume election data has same name,Henrico
-,201 - ADAMS,(Manual) -- assume election data has same name,Henrico
+N/A,201 - ADAMS,(Manual) -- assume election data has same name,Henrico
 116 - Holding Tank for 105,,(Manual) -- assume election data has same name,Henrico
 117 - Holding Tank for 114,,(Manual) -- assume election data has same name,Henrico
 118 - Holding Tank for 107,,(Manual) -- assume election data has same name,Henrico
@@ -205,9 +205,9 @@ PrecinctName,FormerName,Source:,County
 310 - SADLER,309 - SADLER,(Manual) -- assume election data has same name,Henrico
 311 - SHADY GROVE,310 - SHADY GROVE,(Manual) -- assume election data has same name,Henrico
 312 - SHORT PUMP,311 - SHORT PUMP,(Manual) -- assume election data has same name,Henrico
-,312 - SPRINGFIELD,(Manual) -- assume election data has same name,Henrico
-,316 - COLONIAL TRAIL,(Manual) -- assume election data has same name,Henrico
-,401 - QUIOCCASIN ,(Manual) -- assume election data has same name,Henrico
+N/A,312 - SPRINGFIELD,(Manual) -- assume election data has same name,Henrico
+N/A,316 - COLONIAL TRAIL,(Manual) -- assume election data has same name,Henrico
+N/A,401 - QUIOCCASIN ,(Manual) -- assume election data has same name,Henrico
 401 - CRESTVIEW,402 - CRESTVIEW,(Manual) -- assume election data has same name,Henrico
 402 - DERBYSHIRE,403 - DERBYSHIRE,(Manual) -- assume election data has same name,Henrico
 403 - FREEMAN,404 - FREEMAN,(Manual) -- assume election data has same name,Henrico
