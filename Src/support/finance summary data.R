@@ -47,5 +47,5 @@ hod$District <- as.numeric(gsub("\\D", "", hod$District))
 # View(sd)
 
 #### Commented out so you can run and view the table without overwriting any files
-write.csv(hod, "Assets/election/2022_House_Finances.csv")
-write.csv(hod_dom, "Assets/election/2022_House_Dom.csv")
+write.csv(hod, "Assets/finance/2022_House_Finances.csv")
+write.csv(hod_dom, "Assets/finance/2022_House_Dom.csv")

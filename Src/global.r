@@ -22,7 +22,7 @@ geo.county$NAMELSAD <- str_to_title(geo.county$NAMELSAD)
 
 # # Load 2022 Election Data
 df.2021_election <- read.csv("Assets/election/2021 November General  - wManual.csv") # Partial Mapping File (not perfect)
-df.2021_election$DistrictName <- df.2021_election$AdjHD
+df.2021_election$DistrictName <- df.2021_election$
 df.2021_election$LocalityName <- df.2021_election$LocalityName %>% str_replace_all("KING & QUEEN COUNTY", "King And Queen County")
 df.2021_election$LocalityName <- str_to_title(df.2021_election$LocalityName)
 

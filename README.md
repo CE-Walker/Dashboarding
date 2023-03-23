@@ -51,4 +51,26 @@ https://help.displayr.com/hc/en-us/articles/4403869071247
 
 https://app.displayr.com/Dashboard?project_id=-995416#page=d10d9703-0b53-4bdc-a331-cf9878b4e80f
 
-Instructions for VSCode
+
+### Notes for jacob
+here is a list of tools I've found really helpful in my development
+
+vscode > R studio is my preference but you certainly don't need to use it
+1. [python](https://www.python.org/downloads/release/python-3112/) + pipx
+   * used to install radian
+   * py -3 -m pip install --user pipx
+   * py -3 -m pipx ensurepath
+2. radian
+   * modern revision of the R console
+   * pipx install -U radian
+3. [vscode](https://code.visualstudio.com/) with R extensions 
+   1. R
+      * change setting: File > Preferences > Settings > Extensions > R > Plot: Use Httpgd [x]
+      * change setting: File > Preferences > Settings > Extensions > R > Rterm: Windows to your radian path (likely "C:\Python311\Scripts\radian.exe")
+   2. R Debugger
+4. R packages used by the R extension
+   * install.packages("languageserver")
+   * install.packages("styler")
+   * install.packages("lintr") - make sure you copy the .lintr file into your project root or most everything will be underlined.
+   * install.packages("httpgd")
+    
