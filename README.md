@@ -67,6 +67,7 @@ vscode > R studio is my preference but you certainly don't need to use it
 2. radian
    * modern revision of the R console
    * `pipx install -U radian`
+   * `Get-Command radian` will show your radian path used below
 3. [vscode](https://code.visualstudio.com/) with R extensions 
    1. R
       * change setting: File > Preferences > Settings > Extensions > R > Plot: Use Httpgd [x]
