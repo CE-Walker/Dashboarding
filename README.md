@@ -55,7 +55,7 @@ https://app.displayr.com/Dashboard?project_id=-995416#page=d10d9703-0b53-4bdc-a3
 ### Notes for jacob
 here is a list of tools I've found really helpful in my development
 
-vscode > R studio is my preference but you certainly don't need to use it
+vscode > R studio is my preference  there are reasons for this like support for any language, but one of the best features is the git integration. You can pull this repository onto your computer by selecting clone a repository after opening vscode and telling where to download to. After doing this all you'll need to do is edit files, save them and when you're done click commit and push. All of our changes will be synced up automatically.
 
 `run commands formatted like this in powershell which is included with windows`
 
