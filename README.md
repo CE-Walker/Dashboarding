@@ -81,10 +81,10 @@ vscode > R studio is my preference  there are reasons for this like support for 
 5. **Experimental** this weekend I'm going to try out the github copilot extension which basically adds chatgpt to vscode and you can ask it for things with comments.
 
 vscode copilot suggesting a function based on the comment I wrote:
-![picture](examples/copilot.png)
+![picture](/examples/copilot.png)
 
 vscode markdown preveiw showing this document
-![picture](examples/preview.png) 
+![picture](/examples/preview.png) 
 
 vscode git about to update my changes to github
-![picture](examples/git.png)
+![picture](/examples/git.png)
