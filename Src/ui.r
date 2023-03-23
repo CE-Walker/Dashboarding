@@ -11,7 +11,7 @@ ui <- fluidPage(
           align-items: center;
           justify-content: center;
         }
-        
+
         h1 {
           font-family: 'Arial Black', sans-serif;
           font-size: 24px;
@@ -32,37 +32,34 @@ ui <- fluidPage(
         margin-left: 0px; /* remove left margin */
         padding-top: 10px; /* reduce padding on top of text */
       }
-      
+
       ")
     )
   ),
-  
   div(
-    class = "custom-title", 
+    class = "custom-title",
     titlePanel("Virginia 2023 Dashboard")
   ),
-  
   div(
     class = "title-text",
     textOutput("title_text")
   ),
-
   fluidRow(
     column(
       width = 6,
       tags$h1("DISTRICT MAP"),
-      leaflet::leafletOutput('map',height = 300)
+      leaflet::leafletOutput("map", height = 300)
     ),
     column(
       width = 6,
       tags$h1("CANDIDATES"),
-      br(),br(),
-      column(  
+      br(), br(),
+      column(
         width = 6,
         align = "center",
         div(
           style = "margin-bottom: 20px;",
-          imageOutput("myimage1",height=150,width=150)
+          imageOutput("myimage1", height = 150, width = 150)
         ),
         textOutput("r_cand"),
         textOutput("r_cash"),
@@ -73,7 +70,7 @@ ui <- fluidPage(
         align = "center",
         div(
           style = "margin-bottom: 20px;",
-          imageOutput("myimage2",height=150,width=150)
+          imageOutput("myimage2", height = 150, width = 150)
         ),
         textOutput("d_cand"),
         textOutput("d_cash"),
@@ -89,21 +86,21 @@ ui <- fluidPage(
       fluidRow(
         column(
           width = 6,
-          highchartOutput("mychart1",height = 150)
+          highchartOutput("mychart1", height = 150)
         ),
         column(
           width = 6,
-          highchartOutput("mychart2",height = 150)
+          highchartOutput("mychart2", height = 150)
         )
       ),
       fluidRow(
         column(
           width = 6,
-          highchartOutput("mychart3",height = 150)
+          highchartOutput("mychart3", height = 150)
         ),
         column(
           width = 6,
-          highchartOutput("mychart4",height = 150)
+          highchartOutput("mychart4", height = 150)
         )
       )
     )
@@ -112,22 +109,21 @@ ui <- fluidPage(
     column(
       width = 12,
       tags$h1("DE CONTRIBUTIONS"),
-      br(),br(),br(),br(),br(),br(),br(),br(),br(),br()
+      br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   ),
   fluidRow(
     column(
       width = 12,
       tags$h1("RECENT POLLING"),
-      br(),br(),br(),br(),br(),br(),br(),br(),br(),br()
+      br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   ),
   fluidRow(
     column(
       width = 12,
       tags$h1("KEY PRECINCTS"),
-      br(),br(),br(),br(),br(),br(),br(),br(),br(),br()
+      br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   )
-  
 )

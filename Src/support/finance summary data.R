@@ -1,12 +1,12 @@
 library(dplyr)
 
-distSummary <- data.frame(dist = seq(1,5),test_val = c("a","b","c","d","e"))
+distSummary <- data.frame(dist = seq(1, 5), test_val = c("a", "b", "c", "d", "e"))
 
 campFin <- data.frame(
-  dist = c(1,1,2,2,3,3,4,4,5,5),
-  party = c("R","D","R","D","R","D","R","D","R","D"),
-  candidate = c("Ricky","Drake","Ryan","Dennis","Robert","Drew","Richard","Dylan","Ronald","Donald"),
-  cash = c(500,200,400,300,250,250,100,1000,50,350)
+  dist = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5),
+  party = c("R", "D", "R", "D", "R", "D", "R", "D", "R", "D"),
+  candidate = c("Ricky", "Drake", "Ryan", "Dennis", "Robert", "Drew", "Richard", "Dylan", "Ronald", "Donald"),
+  cash = c(500, 200, 400, 300, 250, 250, 100, 1000, 50, 350)
 )
 
 camFin_summary <- campFin %>%

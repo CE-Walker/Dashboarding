@@ -5,17 +5,19 @@ library(dplyr)
 # precinct_files <- lapply(precinct_paths, read.csv)
 
 # precinct_c
-house_precincts <- read.csv(file.path("Assets/election", list.files("Assets/election/", "Daily_Registrant_Count_By_House*")), fileEncoding = "UTF-8-BOM")
+house_precincts <- 
+    read.csv(file.path("Assets/election", list.files("Assets/election/", "Daily_Registrant_Count_By_House*")), 
+        fileEncoding = "UTF-8-BOM")
 
 house_precincts$Locality <- sub("Locality: \\d{3} ", "", house_precincts$Locality)
 house_precincts$District <- as.numeric(sub("HSE ", "", house_precincts$District))
 
 corrections <- read.csv("Assets/election/Corrections_Table.csv")
 
-for (i in seqlen(nrow(corrections))) {
-    house_precincts$PrecinctName <- sub(corrections$PrecinctName, corrections$FormerName[i], house_precincts$PrecinctName)
+for (i in seq_len((nrow(corrections)))) {     
+    house_precincts$PrecinctName <- 
+        sub(corrections$PrecinctName, corrections$FormerName[i], house_precincts$PrecinctName)
 }
-
 
 results <- read.csv("Assets/election/2021_November_General_Results.csv")
 
