@@ -206,7 +206,7 @@ server <- function(input, output, session) {
       output$d_raised <- renderText({
         dRaised(df = df.hd, clicked_dist = click$id)
       })
-
+install.packages()
       # Render Bar Chart
       output$mychart1 <- renderHighchart({
         election_bar(df = df.hd, election = "2022 Congressional")
