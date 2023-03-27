@@ -246,16 +246,13 @@ dRaised <- function(df, clicked_dist) {
 
 
 new_election_bar <- function(clicked_dist, df, election) {
-  View(df)
 
-  bar_data <- filter(df, grepl(clicked_dist, District))
-  # %>%
-    #as.data.frame() %>%
-    #filter(election == election) %>%
-    #group_by(result) %>%
-    #summarize(res_count = n())
+  bar_data <- filter(df, grepl(clicked_dist, District)) %>% 
+    filter(election == election) 
 
-  View(bar_data)
+
+  View(sum(bar_data$dVotes))
+  View(sum(bar_data$totVotes))
 
  my_theme <- hc_theme(
     chart = list(
@@ -264,6 +261,7 @@ new_election_bar <- function(clicked_dist, df, election) {
       )
     )
   )
+
 
   # Create highchart object with reversed column order
   highchart() %>%
