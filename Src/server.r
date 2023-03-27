@@ -30,28 +30,28 @@ server <- function(input, output, session) {
 
     # Render Title Text Output
     output$r_cand <- renderText({
-      rCand(df = df.hd, clicked_dist = "NA")
+      rCand(df = df.hd, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$r_cash <- renderText({
-      rCash(df = df.hd, clicked_dist = "NA")
+      rCash(df = df.hd, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$r_raised <- renderText({
-      rRaised(df = df.hd, clicked_dist = "NA")
+      rRaised(df = df.hd, clicked_dist = "\\d+")
     })
 
     # Render Title Text Output
     output$d_cand <- renderText({
-      dCand(df = df.hd, clicked_dist = "NA")
+      dCand(df = df.hd, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$d_cash <- renderText({
-      dCash(df = df.hd, clicked_dist = "NA")
+      dCash(df = df.hd, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$d_raised <- renderText({
-      dRaised(df = df.hd, clicked_dist = "NA")
+      dRaised(df = df.hd, clicked_dist = "\\d+")
     })
 
 
@@ -86,7 +86,7 @@ server <- function(input, output, session) {
     if (is.null(click$id)) {
       # Render Title Text Output
       output$title_text <- renderText({
-        titleText(type = "Statewide", clicked_dist = "NA")
+        titleText(type = "Statewide", clicked_dist = "\\d+")
       })
 
       # Render District Level Leaflet Proxy Map for current map.type
@@ -110,29 +110,29 @@ server <- function(input, output, session) {
 
       # Render Title Text Output
       output$r_cand <- renderText({
-        rCand(df = df.hd, clicked_dist = "NA")
+        rCand(df = df.hd, clicked_dist = "\\d+")
       })
 
       # Render Title Text Output
       output$r_cash <- renderText({
-        rCash(df = df.hd, clicked_dist = "NA")
+        rCash(df = df.hd, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$r_raised <- renderText({
-        rRaised(df = df.hd, clicked_dist = "NA")
+        rRaised(df = df.hd, clicked_dist = "\\d+")
       })
 
       # Render Title Text Output
       output$d_cand <- renderText({
-        dCand(df = df.hd, clicked_dist = "NA")
+        dCand(df = df.hd, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$d_cash <- renderText({
-        dCash(df = df.hd, clicked_dist = "NA")
+        dCash(df = df.hd, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$d_raised <- renderText({
-        dRaised(df = df.hd, clicked_dist = "NA")
+        dRaised(df = df.hd, clicked_dist = "\\d+")
       })
 
       # Render District Bar Chart

@@ -164,8 +164,9 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
 }
 
 rCand <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
-    ""
+  View(clicked_dist)
+  if (clicked_dist == "\\d+") {
+    "Republican"
   } else {
     data <- df %>%
       as.data.frame() %>%
@@ -176,7 +177,7 @@ rCand <- function(df, clicked_dist) {
 }
 
 rCash <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
+  if (clicked_dist == "\\d+") {
     ""
   } else {
     data <- df %>%
@@ -184,13 +185,14 @@ rCash <- function(df, clicked_dist) {
       filter(District == clicked_dist) %>%
       select(total_cash_Republican) %>%
       as.numeric() %>%
+
       dollar()
     paste0("Cash on Hand: ", data)
   }
 }
 
 rRaised <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
+  if (clicked_dist == "\\d+") {
     ""
   } else {
     data <- df %>%
@@ -204,8 +206,8 @@ rRaised <- function(df, clicked_dist) {
 }
 
 dCand <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
-    ""
+  if (clicked_dist == "\\d+") {
+    "Democrat"
   } else {
     data <- df %>%
       as.data.frame() %>%
@@ -216,7 +218,7 @@ dCand <- function(df, clicked_dist) {
 }
 
 dCash <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
+  if (clicked_dist == "\\d+") {
     ""
   } else {
     data <- df %>%
@@ -230,7 +232,7 @@ dCash <- function(df, clicked_dist) {
 }
 
 dRaised <- function(df, clicked_dist) {
-  if (clicked_dist == "NA") {
+  if (clicked_dist == "\\d+") {
     ""
   } else {
     data <- df %>%
