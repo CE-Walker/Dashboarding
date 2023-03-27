@@ -251,9 +251,6 @@ new_election_bar <- function(clicked_dist, df, election) {
     filter(election == election) 
 
 
-  View(sum(bar_data$dVotes))
-  View(sum(bar_data$totVotes))
-
  my_theme <- hc_theme(
     chart = list(
       style = list(
@@ -287,7 +284,7 @@ new_election_bar <- function(clicked_dist, df, election) {
     # Remove y-axis labels and gridlines
     hc_yAxis(
       labels = list(enabled = FALSE),
-      max = myTotal,
+      max = sum(bar_data$totVotes),
       tickInterval = 1,
       gridLineWidth = 0
     ) %>%
