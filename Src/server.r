@@ -9,7 +9,7 @@ server <- function(input, output, session) {
 
     # Render Statewide Leaflet Map for current map.type
     output$map <- renderLeaflet({
-      statewide_map(df = df.hd)
+      statewide_map(df = df.house)
     })
 
     output$myimage1 <- renderImage({
@@ -30,50 +30,50 @@ server <- function(input, output, session) {
 
     # Render Title Text Output
     output$r_cand <- renderText({
-      rCand(df = df.hd, clicked_dist = "\\d+")
+      rCand(df = df.house, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$r_cash <- renderText({
-      rCash(df = df.hd, clicked_dist = "\\d+")
+      rCash(df = df.house, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$r_raised <- renderText({
-      rRaised(df = df.hd, clicked_dist = "\\d+")
+      rRaised(df = df.house, clicked_dist = "\\d+")
     })
 
     # Render Title Text Output
     output$d_cand <- renderText({
-      dCand(df = df.hd, clicked_dist = "\\d+")
+      dCand(df = df.house, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$d_cash <- renderText({
-      dCash(df = df.hd, clicked_dist = "\\d+")
+      dCash(df = df.house, clicked_dist = "\\d+")
     })
     # Render Title Text Output
     output$d_raised <- renderText({
-      dRaised(df = df.hd, clicked_dist = "\\d+")
+      dRaised(df = df.house, clicked_dist = "\\d+")
     })
 
 
     # Render Bar Chart
     output$mychart1 <- renderHighchart({
-      new_election_bar("\\d+", df = df.hd, election = "2022 Congressional")
+      new_election_bar("\\d+", df = df.congress, election = "2022 Congressional")
     })
 
 
     # Render Bar Chart
     output$mychart2 <- renderHighchart({
-      new_election_bar("\\d+",df = df.hd, election = "2020 Presidential")
+      new_election_bar("\\d+",df = df.prez, election = "2020 Presidential")
     })
 
     # Render Bar Chart
     output$mychart3 <- renderHighchart({
-      new_election_bar("\\d+", df = df.hd, election = "2021 Governor")
+      new_election_bar("\\d+", df = df.gov, election = "2021 Governor")
     })
 
     # Render District Bar Chart
     output$mychart4 <- renderHighchart({
-      new_election_bar("\\d+",df = df.hd, election = "2019 State Senate")
+      new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
     })
   })
 
@@ -90,7 +90,7 @@ server <- function(input, output, session) {
       })
 
       # Render District Level Leaflet Proxy Map for current map.type
-      statewide_map.proxy(df = df.hd)
+      statewide_map.proxy(df = df.house)
 
       output$myimage1 <- renderImage({
         list(
@@ -110,49 +110,49 @@ server <- function(input, output, session) {
 
       # Render Title Text Output
       output$r_cand <- renderText({
-        rCand(df = df.hd, clicked_dist = "\\d+")
+        rCand(df = df.house, clicked_dist = "\\d+")
       })
 
       # Render Title Text Output
       output$r_cash <- renderText({
-        rCash(df = df.hd, clicked_dist = "\\d+")
+        rCash(df = df.house, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$r_raised <- renderText({
-        rRaised(df = df.hd, clicked_dist = "\\d+")
+        rRaised(df = df.house, clicked_dist = "\\d+")
       })
 
       # Render Title Text Output
       output$d_cand <- renderText({
-        dCand(df = df.hd, clicked_dist = "\\d+")
+        dCand(df = df.house, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$d_cash <- renderText({
-        dCash(df = df.hd, clicked_dist = "\\d+")
+        dCash(df = df.house, clicked_dist = "\\d+")
       })
       # Render Title Text Output
       output$d_raised <- renderText({
-        dRaised(df = df.hd, clicked_dist = "\\d+")
+        dRaised(df = df.house, clicked_dist = "\\d+")
       })
 
       # Render District Bar Chart
       output$mychart1 <- renderHighchart({
-        new_election_bar("\\d+",df = df.hd, election = "2022 Congressional")
+        new_election_bar("\\d+",df = df.congress, election = "2022 Congressional")
       })
 
       # Render District Bar Chart
       output$mychart2 <- renderHighchart({
-        new_election_bar("\\d+",df = df.hd, election = "2020 Presidential")
+        new_election_bar("\\d+",df = df.prez, election = "2020 Presidential")
       })
 
       # Render District Bar Chart
       output$mychart3 <- renderHighchart({
-        new_election_bar("\\d+",df = df.hd, election = "2021 Governor")
+        new_election_bar("\\d+",df = df.gov, election = "2021 Governor")
       })
 
       # Render District Bar Chart
       output$mychart4 <- renderHighchart({
-        new_election_bar("\\d+",df = df.hd, election = "2019 State Senate")
+        new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
       })
 
       # User clicked to drill down to the district level
@@ -163,7 +163,7 @@ server <- function(input, output, session) {
       })
 
       # Render District Map Proxy
-      district_map.proxy(df = df.hd, df.county = df.county, clicked_dist = click$id)
+      district_map.proxy(df = df.house, df.county = df.county, clicked_dist = click$id)
 
       output$myimage1 <- renderImage({
         list(
@@ -183,48 +183,48 @@ server <- function(input, output, session) {
 
       # Render Title Text Output
       output$r_cand <- renderText({
-        rCand(df = df.hd, clicked_dist = click$id)
+        rCand(df = df.house, clicked_dist = click$id)
       })
 
       # Render Title Text Output
       output$r_cash <- renderText({
-        rCash(df = df.hd, clicked_dist = click$id)
+        rCash(df = df.house, clicked_dist = click$id)
       })
       # Render Title Text Output
       output$r_raised <- renderText({
-        rRaised(df = df.hd, clicked_dist = click$id)
+        rRaised(df = df.house, clicked_dist = click$id)
       })
 
       # Render Title Text Output
       output$d_cand <- renderText({
-        dCand(df = df.hd, clicked_dist = click$id)
+        dCand(df = df.house, clicked_dist = click$id)
       })
       # Render Title Text Output
       output$d_cash <- renderText({
-        dCash(df = df.hd, clicked_dist = click$id)
+        dCash(df = df.house, clicked_dist = click$id)
       })
       # Render Title Text Output
       output$d_raised <- renderText({
-        dRaised(df = df.hd, clicked_dist = click$id)
+        dRaised(df = df.house, clicked_dist = click$id)
       })
       # Render Bar Chart
       output$mychart1 <- renderHighchart({
-        new_election_bar(click$id ,df = df.hd, election = "2022 Congressional")
+        new_election_bar(click$id ,df = df.congress, election = "2022 Congressional")
       })
 
       # Render Bar Chart
       output$mychart2 <- renderHighchart({
-        new_election_bar(click$id,df = df.hd, election = "2020 Presidential")
+        new_election_bar(click$id,df = df.prez, election = "2020 Presidential")
       })
 
       # Render Chart
       output$mychart3 <- renderHighchart({
-        new_election_bar(click$id,df = df.hd, election = "2021 Governor")
+        new_election_bar(click$id,df = df.gov, election = "2021 Governor")
       })
 
       # Render Chart
       output$mychart4 <- renderHighchart({
-        new_election_bar(click$id,df = df.hd, election = "2019 State Senate")
+        new_election_bar(click$id,df = df.house, election = "2019 House of Delegates")
       })
     }
   })

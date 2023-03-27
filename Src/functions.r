@@ -252,9 +252,7 @@ dRaised <- function(df, clicked_dist) {
 
 new_election_bar <- function(clicked_dist, df, election) {
 
-  bar_data <- filter(df, grepl(clicked_dist, District)) %>% 
-    filter(election == election) 
-
+  bar_data <- filter(df, grepl(clicked_dist, District)) 
 
  my_theme <- hc_theme(
     chart = list(
