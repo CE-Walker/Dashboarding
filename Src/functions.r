@@ -295,8 +295,8 @@ new_election_bar <- function(clicked_dist, df, election) {
     # hc_add_series(name = "Strong Democrat", data = data$value5,color = "#1d89ea",total = myTotal) %>%
     # hc_add_series(name = "Lean Democrat", data = data$value4,color = "#8fbfea",total = myTotal) %>%
     # hc_add_series(name = "Swing", data = data$value3,color = "#b4a7d6",total = myTotal) %>%
-    hc_add_series(name = dCand(df, clicked_dist), data = sum(bar_data$dVotes), color = "#1d89ea", total = sum(bar_data$totVotes)) %>%
-    hc_add_series(name = rCand(df, clicked_dist), data = sum(bar_data$rVote), color = "#CD2626", total = sum(bar_data$totVotes)) %>%
+    hc_add_series(name = bar_data$dCand, data = sum(bar_data$dVotes), color = "#1d89ea", total = sum(bar_data$totVotes)) %>%
+    hc_add_series(name = bar_data$rCand, data = sum(bar_data$rVote), color = "#CD2626", total = sum(bar_data$totVotes)) %>%
     hc_plotOptions(
       series = list(
         stacking = "normal",
