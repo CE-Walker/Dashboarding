@@ -177,7 +177,8 @@ rCand <- function(df, clicked_dist) {
 
 rCash <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    ""
+    data <- sum(df$total_cash_Republican, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    paste0("Party Cash on Hand: ", data)
   } else {
     data <- df %>%
       as.data.frame() %>%
@@ -192,7 +193,8 @@ rCash <- function(df, clicked_dist) {
 
 rRaised <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    ""
+    data <- sum(df$total_raised_Republican, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    paste0("Party Total Raised: ", data)
   } else {
     data <- df %>%
       as.data.frame() %>%
@@ -218,7 +220,8 @@ dCand <- function(df, clicked_dist) {
 
 dCash <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    ""
+    data <- sum(df$total_cash_Democratic, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    paste0("Party Cash on Hand: ", data)
   } else {
     data <- df %>%
       as.data.frame() %>%
@@ -232,7 +235,8 @@ dCash <- function(df, clicked_dist) {
 
 dRaised <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    ""
+    data <- sum(df$total_raised_Democratic, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    paste0("Party Total Raised: ", data)
   } else {
     data <- df %>%
       as.data.frame() %>%
