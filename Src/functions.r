@@ -164,7 +164,6 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
 }
 
 rCand <- function(df, clicked_dist) {
-  View(clicked_dist)
   if (clicked_dist == "\\d+") {
     "Republican"
   } else {
