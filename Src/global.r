@@ -12,8 +12,19 @@ library(highcharter)
 library(scales)
 library(tidyr)
 
+
+
+
 # # Set Working Directory
 # setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+#define global variables
+# df.hd <- NULL
+# df.county <- NULL
+# df.2020_election <- NULL
+# df.2021_election <- NULL
+# df.finance <- NULL
+
 
 # Load Geo Data
 geo.hd <- sf::st_read("Assets/geography/HD.json")
@@ -21,8 +32,8 @@ geo.county <- sf::st_read("Assets/geography/County.geojson")
 geo.county$NAMELSAD <- str_to_title(geo.county$NAMELSAD)
 
 # # Load 2022 Election Data
-df.2021_election <- read.csv("Assets/election/2021 November General  - wManual.csv") # Partial Mapping File (not perfect)
-df.2021_election$DistrictName <- df.2021_election$
+df.2021_election <- read.csv("Assets/election/2021_November_General_Adj.csv") # Partial Mapping File (not perfect)
+df.2021_election$DistrictName <- df.2021_election$AdjHD
 df.2021_election$LocalityName <- df.2021_election$LocalityName %>% str_replace_all("KING & QUEEN COUNTY", "King And Queen County")
 df.2021_election$LocalityName <- str_to_title(df.2021_election$LocalityName)
 
@@ -120,6 +131,7 @@ df.county[paste0("D_", districts)] <- t(apply(df.county, 1, function(x) {
     ifelse(x["NAMELSAD"] %in% df.2021_election$LocalityName[df.2021_election$DistrictName == y], TRUE, FALSE)
   })
 }))
+# Document this code
 
 source("Src/functions.r")
 source("Src/ui.r")

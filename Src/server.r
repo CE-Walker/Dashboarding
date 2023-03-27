@@ -57,22 +57,23 @@ server <- function(input, output, session) {
 
     # Render Bar Chart
     output$mychart1 <- renderHighchart({
-      election_bar(df = df.hd, election = "2022 Congressional")
+      new_election_bar("\\d+", df = df.hd, election = "2022 Congressional")
     })
+
 
     # Render Bar Chart
     output$mychart2 <- renderHighchart({
-      election_bar(df = df.hd, election = "2020 Presidential")
+      new_election_bar("\\d+",df = df.hd, election = "2020 Presidential")
     })
 
     # Render Bar Chart
     output$mychart3 <- renderHighchart({
-      election_bar(df = df.hd, election = "2021 Governor")
+      new_election_bar("\\d+", df = df.hd, election = "2021 Governor")
     })
 
     # Render District Bar Chart
     output$mychart4 <- renderHighchart({
-      election_bar(df = df.hd, election = "2019 State Senate")
+      new_election_bar("\\d+",df = df.hd, election = "2019 State Senate")
     })
   })
 
@@ -136,22 +137,22 @@ server <- function(input, output, session) {
 
       # Render District Bar Chart
       output$mychart1 <- renderHighchart({
-        election_bar(df = df.hd, election = "2022 Congressional")
+        new_election_bar("\\d+",df = df.hd, election = "2022 Congressional")
       })
 
       # Render District Bar Chart
       output$mychart2 <- renderHighchart({
-        election_bar(df = df.hd, election = "2020 Presidential")
+        new_election_bar("\\d+",df = df.hd, election = "2020 Presidential")
       })
 
       # Render District Bar Chart
       output$mychart3 <- renderHighchart({
-        election_bar(df = df.hd, election = "2021 Governor")
+        new_election_bar("\\d+",df = df.hd, election = "2021 Governor")
       })
 
       # Render District Bar Chart
       output$mychart4 <- renderHighchart({
-        election_bar(df = df.hd, election = "2019 State Senate")
+        new_election_bar("\\d+",df = df.hd, election = "2019 State Senate")
       })
 
       # User clicked to drill down to the district level
@@ -206,25 +207,24 @@ server <- function(input, output, session) {
       output$d_raised <- renderText({
         dRaised(df = df.hd, clicked_dist = click$id)
       })
-install.packages()
       # Render Bar Chart
       output$mychart1 <- renderHighchart({
-        election_bar(df = df.hd, election = "2022 Congressional")
+        new_election_bar(click$id ,df = df.hd, election = "2022 Congressional")
       })
 
       # Render Bar Chart
       output$mychart2 <- renderHighchart({
-        election_bar(df = df.hd, election = "2020 Presidential")
+        new_election_bar(click$id,df = df.hd, election = "2020 Presidential")
       })
 
       # Render Chart
       output$mychart3 <- renderHighchart({
-        election_bar(df = df.hd, election = "2021 Governor")
+        new_election_bar(click$id,df = df.hd, election = "2021 Governor")
       })
 
       # Render Chart
       output$mychart4 <- renderHighchart({
-        election_bar(df = df.hd, election = "2019 State Senate")
+        new_election_bar(click$id,df = df.hd, election = "2019 State Senate")
       })
     }
   })

@@ -243,39 +243,21 @@ dRaised <- function(df, clicked_dist) {
   }
 }
 
-election_bar <- function(df, election) {
-  # df <- df.hd
-  # election <- "2020 Presidential"
 
-  if (election == "2020 Presidential") {
-    rCand <- "Trump"
-    dCand <- "Biden"
-  } else if (election == "2021 Governor") {
-    rCand <- "Youngkin"
-    dCand <- "McAuiliffe"
-  } else {
-    rCand <- "Republican"
-    dCand <- "Democrat"
-  }
 
-  data <- df %>%
-    as.data.frame() %>%
-    group_by(result) %>%
-    summarize(res_count = n())
+new_election_bar <- function(clicked_dist, df, election) {
+  View(df)
 
-  data <- data.frame(
-    category = "Cateory 1",
-    # value5 = as.numeric(data[data$result == "Strong D",2]),
-    # value4 = as.numeric(data[data$result == "Lean D",2]),
-    # value3 = as.numeric(data[data$result == "Swing",2]),
-    value2 = as.numeric(data[data$result == "Lean R", 2]),
-    value1 = as.numeric(data[data$result == "Strong R", 2])
-  )
+  bar_data <- filter(df, grepl(clicked_dist, District))
+  # %>%
+    #as.data.frame() %>%
+    #filter(election == election) %>%
+    #group_by(result) %>%
+    #summarize(res_count = n())
 
-  # myTotal <- data$value5 + data$value4 + data$value3 + data$value2 + data$value1
-  myTotal <- data$value2 + data$value1
+  View(bar_data)
 
-  my_theme <- hc_theme(
+ my_theme <- hc_theme(
     chart = list(
       style = list(
         fontFamily = "Arial Black, sans-serif"
@@ -315,8 +297,8 @@ election_bar <- function(df, election) {
     # hc_add_series(name = "Strong Democrat", data = data$value5,color = "#1d89ea",total = myTotal) %>%
     # hc_add_series(name = "Lean Democrat", data = data$value4,color = "#8fbfea",total = myTotal) %>%
     # hc_add_series(name = "Swing", data = data$value3,color = "#b4a7d6",total = myTotal) %>%
-    hc_add_series(name = dCand, data = data$value2, color = "#1d89ea", total = myTotal) %>%
-    hc_add_series(name = rCand, data = data$value1, color = "#CD2626", total = myTotal) %>%
+    hc_add_series(name = dCand(df, clicked_dist), data = sum(bar_data$dVotes), color = "#1d89ea", total = sum(bar_data$totVotes)) %>%
+    hc_add_series(name = rCand(df, clicked_dist), data = sum(bar_data$rVote), color = "#CD2626", total = sum(bar_data$totVotes)) %>%
     hc_plotOptions(
       series = list(
         stacking = "normal",
@@ -351,6 +333,129 @@ election_bar <- function(df, election) {
       )
     ) %>%
     hc_add_theme(my_theme)
-}
+
+  }
+
+# election_bar <- function(df, election) {
+#   # df <- df.hd
+#   # election <- "2020 Presidential"
+
+  
+
+#   if (election == "2020 Presidential") {
+#     rCand <- "Trump"
+#     dCand <- "Biden"
+#   } else if (election == "2021 Governor") {
+#     rCand <- "Youngkin"
+#     dCand <- "McAuiliffe"
+#   } else {
+#     rCand <- "Republican"
+#     dCand <- "Democrat"
+#   }
+
+#   data <- df %>%
+#     as.data.frame() %>%
+#     filter(election == election) %>%
+#     group_by(result) %>%
+#     summarize(res_count = n())
+
+
+
+#   # data <- df %>%
+#   #   as.data.frame() %>%
+#   #   group_by(result) %>%
+#   #   summarize(res_count = n())
+
+
+
+#   #data <- data.frame(
+#    # category = "Cateory 1",
+#     # value5 = as.numeric(data[data$result == "Strong D",2]),
+#     # value4 = as.numeric(data[data$result == "Lean D",2]),
+#     # value3 = as.numeric(data[data$result == "Swing",2]),
+#     #value2 = as.numeric(data[data$result == "Lean R", 2]),
+#     #value1 = as.numeric(data[data$result == "Strong R", 2])
+#   #)
+
+#   # myTotal <- data$value5 + data$value4 + data$value3 + data$value2 + data$value1
+#   myTotal <- data$value2 + data$value1
+
+#   my_theme <- hc_theme(
+#     chart = list(
+#       style = list(
+#         fontFamily = "Arial Black, sans-serif"
+#       )
+#     )
+#   )
+
+#   # Create highchart object with reversed column order
+#   highchart() %>%
+#     hc_title(
+#       text = paste(election),
+#       style = list(
+#         fontSize = "20px"
+#       ),
+#       align = "left"
+#     ) %>%
+#     # Set chart type to stacked bar chart and remove spacing on the right side
+#     hc_chart(
+#       type = "bar",
+#       marginTop = 10,
+#       marginBottom = -10
+#     ) %>%
+#     # Remove x-axis labels
+#     hc_xAxis(
+#       labels = list(enabled = FALSE),
+#       tickLength = 0,
+#       lineColor = "transparent" # Add this line to make the y-axis line transparent
+#     ) %>%
+#     # Remove y-axis labels and gridlines
+#     hc_yAxis(
+#       labels = list(enabled = FALSE),
+#       max = myTotal,
+#       tickInterval = 1,
+#       gridLineWidth = 0
+#     ) %>%
+#     # Add data series with reversed column order
+#     # hc_add_series(name = "Strong Democrat", data = data$value5,color = "#1d89ea",total = myTotal) %>%
+#     # hc_add_series(name = "Lean Democrat", data = data$value4,color = "#8fbfea",total = myTotal) %>%
+#     # hc_add_series(name = "Swing", data = data$value3,color = "#b4a7d6",total = myTotal) %>%
+#     hc_add_series(name = dCand, data = data$value2, color = "#1d89ea", total = myTotal) %>%
+#     hc_add_series(name = rCand, data = data$value1, color = "#CD2626", total = myTotal) %>%
+#     hc_plotOptions(
+#       series = list(
+#         stacking = "normal",
+#         dataLabels = list(
+#           enabled = TRUE,
+#           style = list(
+#             fontSize = "12px",
+#             color = "white"
+#           ),
+#           formatter = JS(
+#             "function() {
+#           var percentage = (this.y / this.series.options.total) * 100;
+#           var s = '<b>' + this.series.name + '</b> ' +
+#                   Highcharts.numberFormat(percentage, 0) + '%';
+#           return s;
+#         }"
+#           )
+#         )
+#       )
+#     ) %>%
+#     # Remove chart legend
+#     hc_legend(enabled = FALSE) %>%
+#     hc_tooltip(
+#       useHTML = TRUE,
+#       formatter = JS(
+#         "function() {
+#        var percentage = (this.y / this.series.options.total) * 100;
+#        var s = '<b>' + this.series.name + '</b> ' +
+#                '<span >' + Highcharts.numberFormat(percentage, 1) + '%</span>';
+#        return s;
+#      }"
+#       )
+#     ) %>%
+#     hc_add_theme(my_theme)
+# }
 # function to filter data by election
 

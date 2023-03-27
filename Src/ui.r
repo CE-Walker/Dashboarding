@@ -109,6 +109,8 @@ ui <- fluidPage(
     column(
       width = 12,
       tags$h1("DE CONTRIBUTIONS"),
+      #dynamic list of text outputs
+      textOutput("de_contributions"),
       br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   ),
@@ -116,6 +118,8 @@ ui <- fluidPage(
     column(
       width = 12,
       tags$h1("RECENT POLLING"),
+      #table of polling data
+      tableOutput("polling_table"),
       br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   ),
@@ -123,6 +127,8 @@ ui <- fluidPage(
     column(
       width = 12,
       tags$h1("KEY PRECINCTS"),
+      #table of competitive precincts
+      tableOutput("precinct_table"),
       br(), br(), br(), br(), br(), br(), br(), br(), br(), br()
     )
   )
