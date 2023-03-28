@@ -57,6 +57,8 @@ df.2019_election$LocalityName <- df.2019_election$LocalityName %>% str_replace_a
 df.2019_election$LocalityName <- str_to_title(df.2019_election$LocalityName)
 
 
+# load de contributions
+df.de <- read.csv("Assets/finance/2022_House_Dom.csv")
 
 # Load Finance Data
 df.finance <- read.csv("Assets/finance/2022_House_Finances.csv")
@@ -105,7 +107,7 @@ summary_table <- function(df, offTitle, df.geo, df.finance) {
   df <- merge(df, df.finSum, by.x = "District", by.y = "District", all.x = TRUE)
   return(df)
 }
-df.congress <- summary_table(df = df.2022_election, offTitle = "Membe House of Representatives", df.geo = geo.hd, df.finance = df.finance)
+df.congress <- summary_table(df = df.2022_election, offTitle = "Member House of Representatives", df.geo = geo.hd, df.finance = df.finance)
 df.gov <- summary_table(df = df.2021_election,  offTitle = "Governor", df.geo = geo.hd, df.finance = df.finance)
 df.prez <- summary_table(df = df.2020_election, offTitle = "President and Vice President", df.geo = geo.hd, df.finance = df.finance)
 df.house <- summary_table(df = df.2019_election, offTitle = "Member House of Delegates", df.geo = geo.hd, df.finance = df.finance)

@@ -75,6 +75,13 @@ server <- function(input, output, session) {
     output$mychart4 <- renderHighchart({
       new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
     })
+  output$de_contributions <- renderText({
+        deContributions(df = df.congress, clicked_dist = "\\d+")
+      })
+
+    output$precinct_table <- renderTable({
+      precinct_table("\\d+", df = df.congress)
+    })
   })
 
   ### Update if user clicks a shape on the map
@@ -154,6 +161,12 @@ server <- function(input, output, session) {
       output$mychart4 <- renderHighchart({
         new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
       })
+      output$de_contributions <- renderText({
+        deContributions(df = df.congress, clicked_dist = "\\d+")
+      })
+      output$precinct_table <- renderTable({
+      precinct_table("\\d+", df = df.congress)
+    })
 
       # User clicked to drill down to the district level
     } else {
@@ -226,6 +239,12 @@ server <- function(input, output, session) {
       output$mychart4 <- renderHighchart({
         new_election_bar(click$id,df = df.house, election = "2019 House of Delegates")
       })
+      output$de_contributions <- renderText({
+        deContributions(df = df.congress, clicked_dist = click$id)
+      })
+      output$precinct_table <- renderTable(
+      precinct_table(click$id, df = df.de)
+    )
     }
   })
 }

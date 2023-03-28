@@ -42,7 +42,7 @@ statewide_map <- function(df) {
       dragging = FALSE
     )
   ) %>%
-    addProviderTiles(providers$CartoDB.PositronNoLabels) %>%
+    addProviderTiles(providers$CartoDB.Positron) %>%
     addPolygons(
       data = df,
       layerId = df$District,
@@ -98,7 +98,7 @@ statewide_map.proxy <- function(df) {
       label = ~Labels,
       color = "black",
       fillColor = ~ factpal(result),
-      fillOpacity = 0.75
+      fillOpacity = 0.9
     )
 
   m <- m %>% fitBounds(center[1], center[2], center[3], center[4])
@@ -129,7 +129,7 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
   )
 
   this_dist <- df %>% filter(District == clicked_dist)
-  oth_dist <- df %>% filter(District != clicked_dist)
+  # oth_dist <- df %>% filter(District != clicked_dist)
 
   Labels <- sprintf(
     paste0(
@@ -149,14 +149,14 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
       weight = 0.5,
       color = "black",
       label = ~Labels,
-    ) %>%
-    addPolygons(
-      data = oth_dist,
-      weight = 0.5,
-      color = "black",
-      fillColor = "white",
-      fillOpacity = 1
-    )
+    ) # %>%
+  # addPolygons(
+  #  data = oth_dist,
+  #  weight = 0.5,
+  #  color = "black",
+  #  fillColor = "white",
+  #  fillOpacity = 1
+  # )
 
   m <- m %>% fitBounds(center[1], center[2], center[3], center[4])
 
@@ -177,7 +177,9 @@ rCand <- function(df, clicked_dist) {
 
 rCash <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    data <- sum(df$total_cash_Republican, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    data <- sum(df$total_cash_Republican, na.rm = TRUE) %>%
+      as.numeric() %>%
+      dollar()
     paste0("Party Cash on Hand: ", data)
   } else {
     data <- df %>%
@@ -185,7 +187,6 @@ rCash <- function(df, clicked_dist) {
       filter(District == clicked_dist) %>%
       select(total_cash_Republican) %>%
       as.numeric() %>%
-
       dollar()
     paste0("Cash on Hand: ", data)
   }
@@ -193,7 +194,9 @@ rCash <- function(df, clicked_dist) {
 
 rRaised <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    data <- sum(df$total_raised_Republican, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    data <- sum(df$total_raised_Republican, na.rm = TRUE) %>%
+      as.numeric() %>%
+      dollar()
     paste0("Party Total Raised: ", data)
   } else {
     data <- df %>%
@@ -220,7 +223,9 @@ dCand <- function(df, clicked_dist) {
 
 dCash <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    data <- sum(df$total_cash_Democratic, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    data <- sum(df$total_cash_Democratic, na.rm = TRUE) %>%
+      as.numeric() %>%
+      dollar()
     paste0("Party Cash on Hand: ", data)
   } else {
     data <- df %>%
@@ -235,7 +240,9 @@ dCash <- function(df, clicked_dist) {
 
 dRaised <- function(df, clicked_dist) {
   if (clicked_dist == "\\d+") {
-    data <- sum(df$total_raised_Democratic, na.rm = TRUE) %>% as.numeric() %>% dollar()
+    data <- sum(df$total_raised_Democratic, na.rm = TRUE) %>%
+      as.numeric() %>%
+      dollar()
     paste0("Party Total Raised: ", data)
   } else {
     data <- df %>%
@@ -251,10 +258,30 @@ dRaised <- function(df, clicked_dist) {
 
 
 new_election_bar <- function(clicked_dist, df, election) {
+  bar_data <- filter(df, grepl(clicked_dist, District))
+  if (clicked_dist == "\\d+") {
+    if (election == "2022 Congressional") {
+      r_Cand <- "Republican"
+      d_Cand <- "Democrat"
+    } else if (election == "2021 Governor") {
+      r_Cand <- "Youngkin"
+      d_Cand <- "McAuliffe"
+    } else if (election == "2020 Presidential") {
+      r_Cand <- "Trump"
+      d_Cand <- "Biden"
+    } else if (election == "2019 House of Delegates") {
+      r_Cand <- "Republican"
+      d_Cand <- "Democrat"
+    } else {
+      r_Cand <- "Republican"
+      d_Cand <- "Democrat"
+    }
+  } else {
+    r_Cand <- bar_data$rCand
+    d_Cand <- bar_data$dCand
+  }
 
-  bar_data <- filter(df, grepl(clicked_dist, District)) 
-
- my_theme <- hc_theme(
+  my_theme <- hc_theme(
     chart = list(
       style = list(
         fontFamily = "Arial Black, sans-serif"
@@ -295,8 +322,8 @@ new_election_bar <- function(clicked_dist, df, election) {
     # hc_add_series(name = "Strong Democrat", data = data$value5,color = "#1d89ea",total = myTotal) %>%
     # hc_add_series(name = "Lean Democrat", data = data$value4,color = "#8fbfea",total = myTotal) %>%
     # hc_add_series(name = "Swing", data = data$value3,color = "#b4a7d6",total = myTotal) %>%
-    hc_add_series(name = bar_data$dCand, data = sum(bar_data$dVotes), color = "#1d89ea", total = sum(bar_data$totVotes)) %>%
-    hc_add_series(name = bar_data$rCand, data = sum(bar_data$rVote), color = "#CD2626", total = sum(bar_data$totVotes)) %>%
+    hc_add_series(name = d_Cand, data = sum(bar_data$dVotes, na.rm = TRUE), color = "#1d89ea", total = sum(bar_data$totVotes, na.rm = TRUE)) %>%
+    hc_add_series(name = r_Cand, data = sum(bar_data$rVote, na.rm = TRUE), color = "#CD2626", total = sum(bar_data$totVotes, na.rm = TRUE)) %>%
     hc_plotOptions(
       series = list(
         stacking = "normal",
@@ -331,14 +358,41 @@ new_election_bar <- function(clicked_dist, df, election) {
       )
     ) %>%
     hc_add_theme(my_theme)
+}
 
+# return a table of precincts in the clicked district
+precinct_table <- function(clicked_dist, df) {
+  # filter the data to only include the clicked district
+  table_data <- filter(df, grepl(clicked_dist, District))
+  # create a table with the precincts in the clicked district
+  table_data %>%
+    select(dCand, dVotes, rCand, rVote, totVotes) %>%
+    # sort the table by the total votes in descending order
+    arrange(desc(totVotes))
+  # create a table with the data
+  table_data
+}
+
+
+
+deContributions <- function(df, clicked_dist) {
+  if (clicked_dist == "\\d+") {
+    data <- df$Amount
+    paste0("Party Contributions: ", data)
+  } else {
+    data <- df %>%
+      as.data.frame() %>%
+      filter(District == clicked_dist)
+    paste0("Contributions: ", data, "\n")
   }
+}
+
 
 # election_bar <- function(df, election) {
 #   # df <- df.hd
 #   # election <- "2020 Presidential"
 
-  
+
 
 #   if (election == "2020 Presidential") {
 #     rCand <- "Trump"
@@ -456,4 +510,3 @@ new_election_bar <- function(clicked_dist, df, election) {
 #     hc_add_theme(my_theme)
 # }
 # function to filter data by election
-
