@@ -14,7 +14,7 @@ server <- function(input, output, session) {
 
     output$myimage1 <- renderImage({
       list(
-        src = "Assets/test.png",
+        src = "Assets/gop.png",
         width = "150px",
         height = "150px"
       )
@@ -22,7 +22,7 @@ server <- function(input, output, session) {
 
     output$myimage2 <- renderImage({
       list(
-        src = "Assets/test.png",
+        src = "Assets/dem.png",
         width = "150px",
         height = "150px"
       )
@@ -101,7 +101,7 @@ server <- function(input, output, session) {
 
       output$myimage1 <- renderImage({
         list(
-          src = "Assets/test.png",
+          src = "Assets/gop.png",
           width = "150px",
           height = "150px"
         )
@@ -109,7 +109,7 @@ server <- function(input, output, session) {
 
       output$myimage2 <- renderImage({
         list(
-          src = "Assets/test.png",
+          src = "Assets/dem.png",
           width = "150px",
           height = "150px"
         )
@@ -180,7 +180,7 @@ server <- function(input, output, session) {
 
       output$myimage1 <- renderImage({
         list(
-          src = "Assets/test.png",
+          src = "Assets/gop.png",
           width = "150px",
           height = "150px"
         )
@@ -188,7 +188,7 @@ server <- function(input, output, session) {
 
       output$myimage2 <- renderImage({
         list(
-          src = "Assets/test.png",
+          src = "Assets/dem.png",
           width = "150px",
           height = "150px"
         )

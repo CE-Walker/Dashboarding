@@ -129,7 +129,7 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
   )
 
   this_dist <- df %>% filter(District == clicked_dist)
-  # oth_dist <- df %>% filter(District != clicked_dist)
+  oth_dist <- df %>% filter(District != clicked_dist)
 
   Labels <- sprintf(
     paste0(
@@ -138,6 +138,13 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
   ) %>%
     lapply(function(x) HTML(x))
 
+  dist_Labels <- sprintf(
+    paste0(
+      "<b>", "House District ", as.numeric(oth_dist$District), "</b>"
+    )
+  ) %>% lapply(function(x) HTML(x))
+  
+
   center <- st_bbox(this_dist) %>% as.vector()
 
   m <- leafletProxy("map") %>%
@@ -145,18 +152,19 @@ district_map.proxy <- function(df, df.county, clicked_dist) {
     addPolygons(
       data = df.county,
       fillColor = ~ factpal(result),
-      fillOpacity = 0.75,
+      fillOpacity = 0.2,
       weight = 0.5,
       color = "black",
       label = ~Labels,
-    ) # %>%
-  # addPolygons(
-  #  data = oth_dist,
-  #  weight = 0.5,
-  #  color = "black",
-  #  fillColor = "white",
-  #  fillOpacity = 1
-  # )
+    ) %>%
+   addPolygons(
+    data = oth_dist,
+    weight = 1,
+    color = "black",
+    fillColor = "white",
+    fillOpacity = 1,
+    label = ~dist_Labels
+   )
 
   m <- m %>% fitBounds(center[1], center[2], center[3], center[4])
 
@@ -383,6 +391,7 @@ deContributions <- function(df, clicked_dist) {
     data <- df %>%
       as.data.frame() %>%
       filter(District == clicked_dist)
+    data <- data$Amount
     paste0("Contributions: ", data, "\n")
   }
 }

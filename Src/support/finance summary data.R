@@ -43,7 +43,7 @@ mapped_data <- subset(mapped_data, mapped_data$ElectionCycleEndDate == "2023-12-
 mapped_dom <- subset(mapped_dom, mapped_dom$CommitteeType == "Candidate Campaign Committee")
 mapped_dom <- subset(mapped_dom, mapped_dom$IsIndividual == "False")
 mapped_dom <- subset(mapped_dom, grepl("Dominion|DE", mapped_dom$LastOrCompanyName))
-mapped_dom$District <- as.numeric(gsub("\\D+", "", mapped_dom$District))
+mapped_dom$District <- as.numeric(gsub("\\D+", "", mapped_dom$DistrictName))
 
 hod_dom <- subset(mapped_dom, grepl("Delegate", mapped_dom$OfficeSought))
 
