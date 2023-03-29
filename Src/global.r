@@ -69,9 +69,9 @@ summary_table <- function(df, offTitle, df.geo, df.finance) {
     filter(TOTAL_VOTES != 0, OfficeTitle == offTitle) %>%
     group_by(DistrictName) %>%
     summarize(
-      totVotes = sum(TOTAL_VOTES),
-      rVotes   = sum(ifelse(Party == "Republican", TOTAL_VOTES, 0)),
-      dVotes   = sum(ifelse(Party == "Democratic", TOTAL_VOTES, 0)),
+      totVotes = sum(TOTAL_VOTES) + sum(AB),
+      rVotes   = sum(sum(ifelse(Party == "Republican", TOTAL_VOTES, 0)), sum(ifelse(Party == "Republican", AB, 0))),
+      dVotes   = sum(sum(ifelse(Party == "Democratic", TOTAL_VOTES, 0)), sum(ifelse(Party == "Democratic", AB, 0))),
       rCand    = last(LastName[Party == "Republican"][LastName[Party == "Republican"] != ""]),
       dCand    = last(LastName[Party == "Democratic"][LastName[Party == "Democratic"] != ""])
     ) %>%
@@ -124,9 +124,9 @@ county_summary <- function(df, distType, offTitle, groupDist) {
 
   df <- df %>%
     summarize(
-      totVotes = sum(TOTAL_VOTES),
-      rVotes   = sum(ifelse(Party == "Republican", TOTAL_VOTES, 0)),
-      dVotes   = sum(ifelse(Party == "Democratic", TOTAL_VOTES, 0)),
+      totVotes = sum(TOTAL_VOTES) + sum(AB),
+      rVotes   = sum(sum(ifelse(Party == "Republican", TOTAL_VOTES, 0)), sum(ifelse(Party == "Republican", AB, 0))),
+      dVotes   = sum(sum(ifelse(Party == "Democratic", TOTAL_VOTES, 0)), sum(ifelse(Party == "Democratic", AB, 0))),
       rCand    = last(LastName[Party == "Republican"][LastName[Party == "Republican"] != ""]),
       dCand    = last(LastName[Party == "Democratic"][LastName[Party == "Democratic"] != ""])
     ) %>%
