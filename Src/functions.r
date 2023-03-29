@@ -371,30 +371,39 @@ new_election_bar <- function(clicked_dist, df, election) {
 # return a table of precincts in the clicked district
 precinct_table <- function(clicked_dist, df) {
   # filter the data to only include the clicked district
-  table_data <- filter(df, grepl(clicked_dist, District))
+  table_data <- filter(df, grepl(clicked_dist, df$District))
   # create a table with the precincts in the clicked district
   table_data %>%
-    select(dCand, dVotes, rCand, rVote, totVotes) %>%
-    # sort the table by the total votes in descending order
-    arrange(desc(totVotes))
-  # create a table with the data
-  table_data
+    as.data.frame() %>%
+    select(Precinct, dCand, rCand, dVotes, rVotes, totVotes)
+
+    View(table_data)
 }
 
+deContributions <- "List coming soon!
+COVID-19 has made it difficult for us to collect data on contributions.
+We will update this list as soon as we can."
 
-
-deContributions <- function(df, clicked_dist) {
-  if (clicked_dist == "\\d+") {
-    data <- df$Amount
-    paste0("Party Contributions: ", data)
-  } else {
-    data <- df %>%
-      as.data.frame() %>%
-      filter(District == clicked_dist)
-    data <- data$Amount
-    paste0("Contributions: ", data, "\n")
-  }
-}
+# deContributions <- function(df, clicked_dist) {
+#   if (clicked_dist == "\\d+") {
+#     data <- df$Amount
+#     df %>%
+#       as.data.frame() %>%
+#       select(District, Amount) %>%
+#       group_by(District) %>%
+#       summarise(Amount = sum(Amount)) %>%
+#       arrange(desc(Amount)) %>%
+#       mutate(Amount = dollar(Amount)) %>%
+#       as.data.frame() %>%
+#       sprintf(paste0("District ", District, ": ", Amount, "<br>")) %>% lapply(function(x) HTML(x))
+#   } else {
+#     data <- df %>%
+#       as.data.frame() %>%
+#       filter(District == clicked_dist)
+#     data <- data$Amount
+#     sprintf(paste0("Contributions: ", data, "<br>")) %>% lapply(function(x) HTML(x))
+#   }
+# }
 
 
 # election_bar <- function(df, election) {

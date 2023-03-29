@@ -56,7 +56,6 @@ df.2019_election$DistrictName <- df.2019_election$AdjHD
 df.2019_election$LocalityName <- df.2019_election$LocalityName %>% str_replace_all("KING & QUEEN COUNTY", "King And Queen County")
 df.2019_election$LocalityName <- str_to_title(df.2019_election$LocalityName)
 
-
 # load de contributions
 df.de <- read.csv("Assets/finance/2022_House_Dom.csv")
 
@@ -107,6 +106,8 @@ summary_table <- function(df, offTitle, df.geo, df.finance) {
   df <- merge(df, df.finSum, by.x = "District", by.y = "District", all.x = TRUE)
   return(df)
 }
+
+
 df.congress <- summary_table(df = df.2022_election, offTitle = "Member House of Representatives", df.geo = geo.hd, df.finance = df.finance)
 df.gov <- summary_table(df = df.2021_election,  offTitle = "Governor", df.geo = geo.hd, df.finance = df.finance)
 df.prez <- summary_table(df = df.2020_election, offTitle = "President and Vice President", df.geo = geo.hd, df.finance = df.finance)
@@ -148,8 +149,45 @@ county_summary <- function(df, distType, offTitle, groupDist) {
 
   return(df)
 }
+
+precinct_summary <- function(df, distType, offTitle, groupDist) {
+  df <- df %>% filter(DistrictType == distType, TOTAL_VOTES != 0, OfficeTitle == offTitle, grepl("^#",PrecinctName) == FALSE, DistrictName != "#N/A")
+  View(df)
+  if (groupDist) {
+    df <- df %>% group_by(DistrictName, PrecinctName)
+  } else {
+    df <- df %>% group_by(PrecinctName)
+  }
+
+  df <- df %>%
+    summarize(
+      totVotes = sum(TOTAL_VOTES) + sum(AB),
+      rVotes   = sum(sum(ifelse(Party == "Republican", TOTAL_VOTES, 0)), sum(ifelse(Party == "Republican", AB, 0))),
+      dVotes   = sum(sum(ifelse(Party == "Democratic", TOTAL_VOTES, 0)), sum(ifelse(Party == "Democratic", AB, 0))),
+      rCand    = last(LastName[Party == "Republican"][LastName[Party == "Republican"] != ""]),
+      dCand    = last(LastName[Party == "Democratic"][LastName[Party == "Democratic"] != ""])
+    ) %>%
+    mutate(
+      pcR = rVotes / totVotes,
+      pcD = dVotes / totVotes,
+      pcDiff = pcR - pcD,
+      result =
+        ifelse(pcDiff > .2, "Strong R",
+          ifelse(pcDiff > .05, "Lean R",
+            ifelse(pcDiff > -.05, "Swing",
+              ifelse(pcDiff > -.2, "Lean D", "Strong D")
+            )
+          )
+        )
+    )
+  #colnames(df) <- stringr::str_replace_all(colnames(df), "LocalityName", "County")
+
+  return(df)
+}
+
 df.county <- county_summary(df = df.2021_election, distType = "House of Delegates", offTitle = "Member House of Delegates", groupDist = TRUE)
 
+df.precinct <- precinct_summary(df = df.2021_election, distType = "House of Delegates", offTitle = "Member House of Delegates", groupDist = TRUE)
 # Create a list of all unique districts in the election_data dataframe (do not use until mapping table is finished)
 districts <- sort(unique(df.2021_election$DistrictName))
 # Use apply() to create binary columns for each district

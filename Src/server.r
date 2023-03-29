@@ -76,11 +76,11 @@ server <- function(input, output, session) {
       new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
     })
   output$de_contributions <- renderText({
-        deContributions(df = df.congress, clicked_dist = "\\d+")
+        deContributions
       })
 
     output$precinct_table <- renderTable({
-      precinct_table("\\d+", df = df.congress)
+      iris
     })
   })
 
@@ -162,10 +162,10 @@ server <- function(input, output, session) {
         new_election_bar("\\d+",df = df.house, election = "2019 House of Delegates")
       })
       output$de_contributions <- renderText({
-        deContributions(df = df.congress, clicked_dist = "\\d+")
+        deContributions
       })
       output$precinct_table <- renderTable({
-      precinct_table("\\d+", df = df.congress)
+      iris
     })
 
       # User clicked to drill down to the district level
@@ -240,10 +240,10 @@ server <- function(input, output, session) {
         new_election_bar(click$id,df = df.house, election = "2019 House of Delegates")
       })
       output$de_contributions <- renderText({
-        deContributions(df = df.congress, clicked_dist = click$id)
+        deContributions
       })
       output$precinct_table <- renderTable(
-      precinct_table(click$id, df = df.de)
+      iris
     )
     }
   })
